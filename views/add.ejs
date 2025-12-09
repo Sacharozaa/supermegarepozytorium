@@ -1,0 +1,23 @@
+<section class="card">
+  <h2>Dodaj nowego Pokémona</h2>
+  <% if (error) { %>
+  <p class="error"><%= error %></p>
+  <% } %> <% if (success) { %>
+  <p class="success"><%= success %></p>
+  <% } %>
+  <form action="/add" method="post">
+    <label>Nazwa: <input name="name" required /></label>
+    <label>Typ 1: <input name="type1" required /></label>
+    <label>Typ 2: <input name="type2" /></label>
+    <label
+      >Etap ewolucji:
+      <input name="evolution_stage" type="number" min="1" required
+    /></label>
+    <label
+      >Liczba etapów ewolucji:
+      <input name="total_evolutions" type="number" min="1" required
+    /></label>
+    <label>Kolor: <input name="color" required /></label>
+    <button type="submit">Dodaj</button>
+  </form>
+</section>

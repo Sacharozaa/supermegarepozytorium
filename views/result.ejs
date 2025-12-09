@@ -1,0 +1,35 @@
+<section class="card">
+  <h2>Wynik zgadywania</h2>
+  <p>Twój wybór: <strong><%= guessName %></strong></p>
+  <p>Pokémon dnia: <strong><%= secretName %></strong></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cecha</th>
+        <th>Twój</th>
+        <th>Pokémon dnia</th>
+        <th>Pasuje?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% comparison.forEach(row => { %>
+      <tr class="<%= row.ok ? 'ok' : 'no' %>">
+        <td><%= row.label %></td>
+        <td><%= row.guess %></td>
+        <td><%= row.secret %></td>
+        <td><%= row.ok ? '✅' : '❌' %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <% if (matched) { %>
+  <p class="congrats">Yayy zgadłeś!! brawo ◝(ᵔᗜᵔ)◜</p>
+  <% } %>
+
+  <p>
+    <a href="/">Zagraj ponownie</a> |
+    <a href="/stats">Zobacz statystyki</a>
+  </p>
+</section>

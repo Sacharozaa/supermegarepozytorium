@@ -1,0 +1,26 @@
+<section class="card">
+  <h2>Ostatnie zgadywania (ᵕ—ᴗ—)</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Wpisana nazwa</th>
+        <th>Pokémon dnia</th>
+        <th>Poprawne?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rows.forEach(r => { %>
+      <tr>
+        <td><%= new Date(r.created_at).toLocaleString() %></td>
+        <td><%= r.submitted_name %></td>
+        <td><%= r.secret_name %></td>
+        <td><%= r.matched ? '✅' : '❌' %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <p><a href="/">Powrót</a></p>
+</section>

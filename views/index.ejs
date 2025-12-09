@@ -1,0 +1,13 @@
+<section class="card">
+  <h2>Zgadnij Pokémona</h2>
+  <p>Wordle ale z pokemonami ✮ ⋆ ˚｡𖦹 ⋆｡°✩</p>
+  <% if (error) { %>
+  <p class="error"><%= error %></p>
+  <% } %>
+  <form action="/guess" method="post">
+    <label for="name">Nazwa:</label>
+    <input id="name" name="name" required />
+    <button type="submit">Zgaduj</button>
+  </form>
+  <p class="hint">Za malo pokemonow? dodaj je! ദ്ദി◝ ⩊ ◜.ᐟ</p>
+</section>

@@ -1,13 +1,69 @@
-<section class="card">
-  <h2>Zgadnij Pokémona</h2>
-  <p>Wordle ale z pokemonami ✮ ⋆ ˚｡𖦹 ⋆｡°✩</p>
-  <% if (error) { %>
-  <p class="error"><%= error %></p>
+<section class="game-container">
+  <h2>Zgadnij Pokémona (Pokedle)</h2>
+
+  <% if (locals.error) { %>
+    <div class="error" style="color: var(--primary-pink); font-weight: bold; text-align: center; margin-bottom: 20px;">
+      <%= locals.error %>
+    </div>
   <% } %>
-  <form action="/guess" method="post">
-    <label for="name">Nazwa:</label>
-    <input id="name" name="name" required />
-    <button type="submit">Zgaduj</button>
-  </form>
-  <p class="hint">Za malo pokemonow? dodaj je! ദ്ദി◝ ⩊ ◜.ᐟ</p>
+
+  <% if (!game) { %>
+    <div class="error" style="text-align: center;">
+      Błąd połączenia z grą. Odśwież stronę lub zaloguj się aby rozpocząć nową partię.
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="/" class="btn-secondary" style="display: inline-block; padding: 10px 15px; text-decoration: none;">Odśwież</a>
+    </div>
+  <% } else { %>
+  <div class="guesses-grid">
+    <% game.guesses.forEach((g)=> { %>
+      <div class="guess-row">
+        <div class="guess-name">
+          <%= g.name %>
+        </div>
+        <div class="guess-traits">
+          <% g.comparison.forEach((comp)=> { %>
+            <div class="trait <%= comp.ok ? 'ok' : 'no' %>">
+              <span class="trait-label">
+                <%= comp.label %>
+              </span>
+              <span class="trait-val">
+                <%= comp.guess %>
+              </span>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    <% }) %>
+
+    <% for(let i=game.guesses.length; i < 5; i++) { %>
+      <div class="guess-row empty">
+        <div class="guess-name">?</div>
+      </div>
+    <% } %>
+  </div>
+
+  <% if (game.status==="playing" ) { %>
+    <div class="action-area">
+      <form action="/guess" method="post" class="guess-form">
+        <input id="name" name="name" placeholder="Wpisz nazwę Pokémona..." required autocomplete="off" autofocus />
+        <button type="submit" class="btn-primary">Zgaduj</button>
+      </form>
+      <p class="hint">Pozostało prób: <%= 5 - game.guesses.length %>
+      </p>
+    </div>
+  <% } else { %>
+    <div class="game-over" style="text-align: center;">
+      <% if (game.status==="won" ) { %>
+        <h3 style="color: #65b865;">Gratulacje! Zgadłeś!</h3>
+      <% } else { %>
+        <h3 style="color: var(--primary-pink);">Przegrałeś!</h3>
+        <p>Poszukiwany Pokémon to <strong><%= game.secret.name %></strong></p>
+      <% } %>
+      <form action="/restart" method="post">
+        <button type="submit" class="btn-secondary">Graj ponownie</button>
+      </form>
+    </div>
+  <% } %>
+  <% } %>
 </section>

@@ -1,0 +1,73 @@
+<section class="game-container">
+  <h2 style="color: var(--primary-red);">Panel Administratora</h2>
+  <p class="subtitle">Zarządzanie użytkownikami i treścią</p>
+
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="/chiikawa.gif" alt="Sukces!" style="max-width: 200px; display: block; margin: 0 auto;">
+    <h3 style="color: var(--primary-red); margin-top: 15px;">yay udalo sie!!!</h3>
+  </div>
+  <h3 style="margin-top: 30px; color: var(--primary-dark-blue);">Użytkownicy</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Login</th>
+        <th>Pokemony</th>
+        <th>Ranga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(u=> { %>
+        <tr>
+          <td>
+            <%= u.username %>
+          </td>
+          <td>
+            <%= u.pokemon_count || 0 %>
+          </td>
+          <td>
+            <%= u.is_admin ? 'uu Admin' : 'Użytkownik' %>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 30px; color: var(--primary-dark-blue);">Pokemony dodane przez użytkowników</h3>
+  <% if (customPokemons.length===0) { %>
+    <p style="text-align: center; color: var(--primary-blue);">Brak Pokemonów dodanych przez użytkowników</p>
+    <% } else { %>
+      <div class="pokedex-grid">
+        <% customPokemons.forEach(p=> { %>
+          <div class="pokemon-card">
+            <h3>
+              <%= p.name %>
+            </h3>
+            <div class="pokemon-info">
+              <div><strong>Typ 1:</strong>
+                <%= p.type1 %>
+              </div>
+              <% if (p.type2) { %>
+                <div><strong>Typ 2:</strong>
+                  <%= p.type2 %>
+                </div>
+                <% } %>
+                  <div><strong>Etap:</strong>
+                    <%= p.evolution_stage %>
+                  </div>
+                  <div><strong>Kolor:</strong>
+                    <%= p.color %>
+                  </div>
+            </div>
+            <div style="margin-top: 12px; display:flex; gap: 8px;">
+              <a href="/edit/<%= p.id %>" class="btn-primary"
+                style="text-decoration: none; text-align: center; flex: 1;">Edytuj</a>
+              <form action="/delete/<%= p.id %>" method="post" style="flex: 1;">
+                <button type="submit" class="btn-danger" style="width: 100%;"
+                  onclick="return confirm('Usunąć Pokemona?')">Usuń</button>
+              </form>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+      <% } %>
+</section>

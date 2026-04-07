@@ -1,23 +1,44 @@
-<section class="card">
+<section class="form-container">
   <h2>Dodaj nowego Pokémona</h2>
-  <% if (error) { %>
-  <p class="error"><%= error %></p>
-  <% } %> <% if (success) { %>
-  <p class="success"><%= success %></p>
+  <p class="subtitle">Uzupełnij bazę danych o nowe okazy.</p>
+
+  <% if (locals.error) { %>
+    <div class="form-message error">
+      <%= locals.error %>
+    </div>
   <% } %>
+  <% if (locals.success) { %>
+    <div class="form-message success">
+      <%= locals.success %>
+    </div>
+  <% } %>
+
   <form action="/add" method="post">
-    <label>Nazwa: <input name="name" required /></label>
-    <label>Typ 1: <input name="type1" required /></label>
-    <label>Typ 2: <input name="type2" /></label>
-    <label
-      >Etap ewolucji:
-      <input name="evolution_stage" type="number" min="1" required
-    /></label>
-    <label
-      >Liczba etapów ewolucji:
-      <input name="total_evolutions" type="number" min="1" required
-    /></label>
-    <label>Kolor: <input name="color" required /></label>
-    <button type="submit">Dodaj</button>
+    <div class="form-group">
+      <label>Nazwa:</label>
+      <input name="name" placeholder="Np. Litten" required />
+    </div>
+
+    <div class="form-group">
+      <label>Typ 1:</label>
+      <input name="type1" placeholder="Np. Fire" required />
+    </div>
+
+    <div class="form-group">
+      <label>Typ 2 (opcjonalnie):</label>
+      <input name="type2" />
+    </div>
+
+    <div class="form-group">
+      <label>Etap ewolucji:</label>
+      <input name="evolution_stage" type="number" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label>Kolor:</label>
+      <input name="color" placeholder="Np. Black" required />
+    </div>
+
+    <button type="submit" class="btn-primary">Dodaj Pokemona</button>
   </form>
 </section>

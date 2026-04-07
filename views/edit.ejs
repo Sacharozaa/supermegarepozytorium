@@ -1,0 +1,43 @@
+<section class="form-container">
+  <h2>Edytuj Pokemona</h2>
+  <p class="subtitle">Zmień dane Pokemona</p>
+
+  <% if (locals.error) { %>
+    <div class="form-message error">
+      <%= locals.error %>
+    </div>
+  <% } %>
+
+  <form action="/edit/<%= pokemon.id %>" method="post">
+    <div class="form-group">
+      <label>Nazwa:</label>
+      <input name="name" value="<%= pokemon.name %>" required />
+    </div>
+
+    <div class="form-group">
+      <label>Typ 1:</label>
+      <input name="type1" value="<%= pokemon.type1 %>" required />
+    </div>
+
+    <div class="form-group">
+      <label>Typ 2 (opcjonalnie):</label>
+      <input name="type2" value="<%= pokemon.type2 || '' %>" />
+    </div>
+
+    <div class="form-group">
+      <label>Etap ewolucji:</label>
+      <input name="evolution_stage" type="number" min="1" value="<%= pokemon.evolution_stage %>" required />
+    </div>
+
+    <div class="form-group">
+      <label>Kolor:</label>
+      <input name="color" value="<%= pokemon.color %>" required />
+    </div>
+
+    <button type="submit" class="btn-primary">Zapisz zmiany</button>
+  </form>
+
+  <p style="text-align: center; margin-top: 20px;">
+    <a href="/my-pokemons" style="color: var(--primary-blue); font-weight: bold;">← Powrót</a>
+  </p>
+</section>

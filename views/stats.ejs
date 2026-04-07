@@ -1,26 +1,37 @@
-<section class="card">
-  <h2>Ostatnie zgadywania (ᵕ—ᴗ—)</h2>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Data</th>
-        <th>Wpisana nazwa</th>
-        <th>Pokémon dnia</th>
-        <th>Poprawne?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% rows.forEach(r => { %>
-      <tr>
-        <td><%= new Date(r.created_at).toLocaleString() %></td>
-        <td><%= r.submitted_name %></td>
-        <td><%= r.secret_name %></td>
-        <td><%= r.matched ? '✅' : '❌' %></td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
-
-  <p><a href="/">Powrót</a></p>
+<section class="game-container">
+  <h2>Historia Zgadywań</h2>
+  <p class="subtitle">Ostatnie próby rozpoznania Pokémona</p>
+  
+  <% if (locals.error) { %>
+    <div class="form-message error"><%= locals.error %></div>
+  <% } %>
+  
+  <% if (typeof rows !== 'undefined' && rows && rows.length > 0) { %>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr>
+          <th style="padding: 10px; border-bottom: 2px solid var(--primary-pink); text-align: left; color: var(--secondary-blue);">Data</th>
+          <th style="padding: 10px; border-bottom: 2px solid var(--primary-pink); text-align: left; color: var(--secondary-blue);">Twój strzał</th>
+          <th style="padding: 10px; border-bottom: 2px solid var(--primary-pink); text-align: left; color: var(--secondary-blue);">Wynik Celu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rows.forEach(row => { %>
+          <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ffecf2; font-size: 14px;"><%= new Date(row.created_at).toLocaleString('pl-PL') %></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ffecf2; font-weight: bold;"><%= row.submitted_name %></td>
+            <td style="padding: 10px; border-bottom: 1px solid #ffecf2;">
+              <% if (row.matched) { %>
+                <span style="color: #65b865; font-weight: bold;">Trafiony! 🎉 (<%= row.secret_name %>)</span>
+              <% } else { %>
+                <span style="color: #e66687;">Pudło ❌ (Prawdziwy: <%= row.secret_name %>)</span>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p style="text-align: center; color: var(--text-dark); padding: 20px;">Brak statystyk do wyświetlenia. Musisz pójść zgadnąć jakiegoś Pokemona!</p>
+  <% } %>
 </section>

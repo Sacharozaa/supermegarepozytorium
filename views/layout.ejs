@@ -8,15 +8,37 @@
   </head>
   <body>
     <header>
-      <h1>Pokedle</h1>
+      <div class="header-top">
+        <div class="header-title">
+          <img src="/pokedle.png" alt="Pokedle" class="logo">
+          <div>
+          </div>
+        </div>
+      </div>
       <nav>
-        <a href="/">Zgadnij</a> | <a href="/add">Dodaj Pokémona</a> |
-        <a href="/stats">Statystyki</a>
+        <a href="/" class="nav-btn">Gra</a>
+        <a href="/pokedex" class="nav-btn">Pokédex</a>
+        <a href="/add" class="nav-btn">Dodaj</a>
+        <a href="/stats" class="nav-btn">Statystyki</a>
+
+        <% if (typeof username !== 'undefined' && username) { %>
+          <a href="/my-pokemons" class="nav-btn">Moje Pokemony</a>
+          <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+            <a href="/admin" class="nav-btn">Admin</a>
+          <% } %>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 10px;">
+            <span style="color: var(--white); font-size: 12px; font-weight: bold;"><%= username %></span>
+            <a href="/logout" class="nav-btn">Wyloguj</a>
+          </div>
+        <% } else { %>
+          <div style="margin-left: auto; display: flex; gap: 8px;">
+            <a href="/login" class="nav-btn">Zaloguj</a>
+            <a href="/register" class="nav-btn">Rejestracja</a>
+          </div>
+        <% } %>
       </nav>
     </header>
 
     <main><%- body %></main>
-
-    <footer>°❀⋆.ೃ࿔*:･ super duper pokedle °❀⋆.ೃ࿔*:･</footer>
   </body>
 </html>

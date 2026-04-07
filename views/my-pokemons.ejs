@@ -1,0 +1,33 @@
+<section class="game-container">
+  <h2>Moje Pokemony</h2>
+  <p class="subtitle">Pokemony które dodałeś do bazy</p>
+
+  <% if (pokemons.length === 0) { %>
+    <p style="text-align: center; padding: 20px; color: var(--primary-blue);">
+      Jeszcze nie dodałeś żadnych Pokemonów
+      <a href="/add" style="font-weight: bold;">Dodaj teraz!</a>
+    </p>
+  <% } else { %>
+    <div class="pokedex-grid">
+      <% pokemons.forEach(p=> { %>
+        <div class="pokemon-card">
+          <h3><%= p.name %></h3>
+          <div class="pokemon-info">
+            <div><strong>Typ 1:</strong> <%= p.type1 %></div>
+            <% if (p.type2) { %>
+              <div><strong>Typ 2:</strong> <%= p.type2 %></div>
+            <% } %>
+            <div><strong>Etap:</strong> <%= p.evolution_stage %></div>
+            <div><strong>Kolor:</strong> <%= p.color %></div>
+          </div>
+          <div style="margin-top: 12px; display:flex; gap: 8px;">
+            <a href="/edit/<%= p.id %>" class="btn-primary" style="text-decoration: none; text-align: center; flex: 1;">Edytuj</a>
+            <form action="/delete/<%= p.id %>" method="post" style="flex: 1;">
+              <button type="submit" class="btn-danger" style="width: 100%;" onclick="return confirm('Usunąć Pokemona?')">Usuń</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>

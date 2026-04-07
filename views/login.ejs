@@ -1,0 +1,28 @@
+<section class="form-container">
+  <h2>Zaloguj się</h2>
+  <p class="subtitle">Wpisz login i hasło aby zagrać</p>
+
+  <% if (locals.error) { %>
+    <div class="form-message error">
+      <%= locals.error %>
+    </div>
+  <% } %>
+
+  <form action="/login" method="post">
+    <div class="form-group">
+      <label>Login:</label>
+      <input name="username" placeholder="Np. pikachu" required autofocus />
+    </div>
+
+    <div class="form-group">
+      <label>Hasło:</label>
+      <input name="password" type="password" placeholder="Twoje hasło" required />
+    </div>
+
+    <button type="submit" class="btn-primary">Zaloguj się</button>
+  </form>
+
+  <p style="text-align: center; margin-top: 20px;">
+    Nie masz konta? <a href="/register" style="color: var(--primary-blue); font-weight: bold;">Zarejestruj się</a>
+  </p>
+</section>

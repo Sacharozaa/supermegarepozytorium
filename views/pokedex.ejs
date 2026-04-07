@@ -1,0 +1,20 @@
+<section class="game-container">
+  <h2>Pokédex</h2>
+  <p class="subtitle">Lista dostępnych Pokémonów w grze.</p>
+
+  <div class="pokedex-grid">
+    <% pokemons.forEach(p=> { %>
+      <div class="pokemon-card">
+        <h3><%= p.name %></h3>
+        <div class="pokemon-info">
+          <div><strong>Typ 1:</strong> <%= p.type1 %></div>
+          <% if (p.type2) { %>
+            <div><strong>Typ 2:</strong> <%= p.type2 %></div>
+          <% } %>
+          <div><strong>Etap:</strong> <%= p.evolution_stage %></div>
+          <div><strong>Kolor:</strong> <%= p.color %></div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>

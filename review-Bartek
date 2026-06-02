@@ -1,0 +1,13 @@
+Działanie:
+- Aplikacja działa poprawnie, ale jest mało rzeczy po których można odgadnąć jaki pokemon jest poprawny.
+Proponowałbym dodać jeszcze poza etapem typami i kolorem np. generacje z której dany pokemon pochodzi
+- Nie podoba mi się, że pokemon po dodaniu nie pojawia się w pokedexie
+- Podoba mi się ze przy probie usuniecia pokemona wyswietla się komunikat
+Wygląd:
+- jeżeli długość nazwy pokemana jest dłuższa niż szerokość inputa to tekst wychodzi poza okno, źle to wygląda
+- Przy dodawaniu lub edytowaniu pokemona Pole do wpisywania jest nie wyśrodkowane, brzydko to wygląda
+- Nie podoba mi się że Przycisk edytuj jest na czerwono a przycisk usuń jest praktycznie wgl bez stylu
+Kod:
+- index.js jest za duży, routing i logika aplikacji powinny być rozdzielone na osobne pliki
+Readme:
+- dane logowania do użytkownika testowego nie działają

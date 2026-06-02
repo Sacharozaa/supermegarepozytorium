@@ -3,13 +3,10 @@
 ### admin login:
 * **Login:** admin
 * **Hasło:** admin123
-### Użytkownik testowy:
-* **Login:** user1
-* **Hasło:** User1234
 ## Sposób uruchomienia projektu  
 1. **Sklonuj repozytorium z GitHub:**
    ```bash
-    https://github.com/Sacharozaa/supermegarepozytorium.git
+    git clone https://github.com/Sacharozaa/supermegarepozytorium.git
 2. ```bash
    cd supermegarepozytorium
 3. ```bash

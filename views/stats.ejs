@@ -22,9 +22,9 @@
             <td style="padding: 10px; border-bottom: 1px solid #ffecf2; font-weight: bold;"><%= row.submitted_name %></td>
             <td style="padding: 10px; border-bottom: 1px solid #ffecf2;">
               <% if (row.matched) { %>
-                <span style="color: #65b865; font-weight: bold;">Trafiony! 🎉 (<%= row.secret_name %>)</span>
+                <span style="color: #65b865; font-weight: bold;">Zgadles!! (<%= row.secret_name %>)</span>
               <% } else { %>
-                <span style="color: #e66687;">Pudło ❌ (Prawdziwy: <%= row.secret_name %>)</span>
+                <span style="color: #e66687;">Pudlo (Prawdziwy: <%= row.secret_name %>)</span>
               <% } %>
             </td>
           </tr>
@@ -32,6 +32,6 @@
       </tbody>
     </table>
   <% } else { %>
-    <p style="text-align: center; color: var(--text-dark); padding: 20px;">Brak statystyk do wyświetlenia. Musisz pójść zgadnąć jakiegoś Pokemona!</p>
+    <p style="text-align: center; color: var(--text-dark); padding: 20px;">Nie ma statystyk</p>
   <% } %>
 </section>
